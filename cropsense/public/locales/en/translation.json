@@ -1,0 +1,68 @@
+{
+  "app": {
+    "title": "CropSense",
+    "tagline": "AI-Powered Crop Advisory Platform",
+    "loading": "Loading...",
+    "error": "Error",
+    "language": "English"
+  },
+  "forecast": {
+    "title": "Crop Forecast",
+    "subtitle": "Get AI-powered insights for your crops",
+    "form": {
+      "crop": "Select Crop",
+      "district": "Select District",
+      "season": "Select Season",
+      "quantity": "Quantity (kg)",
+      "submit": "Get Forecast",
+      "loading": "Analyzing..."
+    },
+    "results": {
+      "title": "Forecast Results",
+      "summary": "Summary",
+      "demand": "Demand",
+      "price": "Price",
+      "trend": "Trend",
+      "markets": "Market Heatmap",
+      "recommendations": "Recommendations",
+      "simulator": "Scenario Simulator"
+    }
+  },
+  "simulator": {
+    "title": "Scenario Simulator",
+    "description": "Test different scenarios to optimize your crop yield and profits",
+    "form": {
+      "crop": "Crop",
+      "quantity": "Quantity (kg)",
+      "market": "Select Market",
+      "submit": "Run Simulation",
+      "reset": "Reset"
+    },
+    "results": {
+      "title": "Simulation Results",
+      "revenue": "Expected Revenue",
+      "profit": "Estimated Profit",
+      "demand_impact": "Demand Impact",
+      "risk": "Risk Assessment",
+      "recommendations": "Recommendations"
+    }
+  },
+  "common": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "risk": "Risk",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "languages": {
+    "en": "English",
+    "kn": "ಕನ್ನಡ",
+    "hi": "हिंदी",
+    "mr": "मराठी"
+  }
+}

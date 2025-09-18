@@ -1,0 +1,71 @@
+{
+  "app": {
+    "title": "क्रॉपसेंस",
+    "tagline": "कृत्रिम बुद्धिमत्ता आधारित फसल सलाहकार प्लेटफॉर्म",
+    "getForecast": "पूर्वानुमान प्राप्त करें",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि"
+  },
+  "forecastForm": {
+    "cropLabel": "फसल चुनें",
+    "districtLabel": "जिला चुनें",
+    "quantityLabel": "मात्रा (किलो)",
+    "seasonLabel": "मौसम चुनें",
+    "submitButton": "पूर्वानुमान प्राप्त करें",
+    "crops": {
+      "rice": "चावल",
+      "wheat": "गेहूं",
+      "sugarcane": "गन्ना",
+      "cotton": "कपास",
+      "maize": "मक्का"
+    },
+    "seasons": {
+      "kharif": "खरीफ",
+      "rabi": "रबी",
+      "zaid": "जायद"
+    }
+  },
+  "forecastResults": {
+    "title": "पूर्वानुमान परिणाम",
+    "crop": "फसल",
+    "district": "जिला",
+    "season": "मौसम",
+    "quantity": "मात्रा",
+    "generatedOn": "तिथि",
+    "glutRisk": "अधिक उत्पादन जोखिम",
+    "riskLevels": {
+      "low": "कम",
+      "medium": "मध्यम",
+      "high": "उच्च"
+    },
+    "recommendedQuantity": "सुझाई गई मात्रा",
+    "optimalTiming": "उत्तम समय",
+    "suggestedMarkets": "सुझाए गए बाजार"
+  },
+  "marketHeatmap": {
+    "title": "बाजार हीटमैप",
+    "demandLevels": {
+      "high": "उच्च",
+      "medium": "मध्यम",
+      "low": "कम"
+    }
+  },
+  "trendChart": {
+    "title": "मांग और मूल्य प्रवृत्ति",
+    "demand": "मांग (किलो)",
+    "price": "मूल्य (₹/किलो)",
+    "days7": "7 दिन",
+    "days14": "14 दिन",
+    "days30": "30 दिन"
+  },
+  "scenarioSimulator": {
+    "title": "परिदृश्य सिम्युलेटर",
+    "simulateButton": "सिमुलेशन चलाएं",
+    "resultsTitle": "सिमुलेशन परिणाम",
+    "demandImpact": "मांग पर प्रभाव",
+    "revenue": "आय",
+    "profit": "लाभ",
+    "riskAssessment": "जोखिम मूल्यांकन",
+    "recommendations": "सिफारिशें"
+  }
+}

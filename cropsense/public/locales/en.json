@@ -1,0 +1,71 @@
+{
+  "app": {
+    "title": "CropSense",
+    "tagline": "AI-Powered Crop Advisory Platform",
+    "getForecast": "Get Forecast",
+    "loading": "Loading...",
+    "error": "Error"
+  },
+  "forecastForm": {
+    "cropLabel": "Select Crop",
+    "districtLabel": "Select District",
+    "quantityLabel": "Quantity (kg)",
+    "seasonLabel": "Select Season",
+    "submitButton": "Get Forecast",
+    "crops": {
+      "rice": "Rice",
+      "wheat": "Wheat",
+      "sugarcane": "Sugarcane",
+      "cotton": "Cotton",
+      "maize": "Maize"
+    },
+    "seasons": {
+      "kharif": "Kharif",
+      "rabi": "Rabi",
+      "zaid": "Zaid"
+    }
+  },
+  "forecastResults": {
+    "title": "Forecast Results",
+    "crop": "Crop",
+    "district": "District",
+    "season": "Season",
+    "quantity": "Quantity",
+    "generatedOn": "Generated on",
+    "glutRisk": "Glut Risk",
+    "riskLevels": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "recommendedQuantity": "Recommended Quantity",
+    "optimalTiming": "Optimal Timing",
+    "suggestedMarkets": "Suggested Markets"
+  },
+  "marketHeatmap": {
+    "title": "Market Heatmap",
+    "demandLevels": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
+  },
+  "trendChart": {
+    "title": "Demand & Price Trend",
+    "demand": "Demand (kg)",
+    "price": "Price (₹/kg)",
+    "days7": "7 Days",
+    "days14": "14 Days",
+    "days30": "30 Days"
+  },
+  "scenarioSimulator": {
+    "title": "Scenario Simulator",
+    "simulateButton": "Run Simulation",
+    "resultsTitle": "Simulation Results",
+    "demandImpact": "Demand Impact",
+    "revenue": "Revenue",
+    "profit": "Profit",
+    "riskAssessment": "Risk Assessment",
+    "recommendations": "Recommendations"
+  }
+}

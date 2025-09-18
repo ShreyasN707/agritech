@@ -1,3 +1,6 @@
+// Import i18n service
+import { i18n, t } from './js/i18n.js';
+
 // CropSense Frontend Application
 class CropSenseApp {
     constructor() {
@@ -5,15 +8,123 @@ class CropSenseApp {
         this.currentChart = null;
         this.currentMap = null;
         this.isOffline = false;
+        this.i18n = i18n;
         
-        this.init();
+        // Initialize after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+        } else {
+            this.init();
+        }
     }
 
-    init() {
-        this.setupEventListeners();
-        this.checkOfflineStatus();
-        this.loadLastForecast();
-        this.setupOfflineDetection();
+    async init() {
+        try {
+            // Initialize i18n first
+            await this.i18n.init();
+            
+            // Set up event listeners
+            this.setupEventListeners();
+            
+            // Apply translations to static content
+            this.applyTranslations();
+            
+            // Set up language change listener
+            document.addEventListener('languageChanged', () => this.onLanguageChanged());
+            
+            // Initialize other components
+            this.checkOfflineStatus();
+            this.loadLastForecast();
+            this.setupOfflineDetection();
+            
+            console.log('Application initialized with language:', this.i18n.getLanguage());
+        } catch (error) {
+            console.error('Failed to initialize application:', error);
+        }
+    }
+    
+    // Apply translations to all elements with data-i18n attributes
+    applyTranslations() {
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (key) {
+                const translation = this.i18n.t(key);
+                if (translation) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translation;
+                    } else if (element.tagName === 'IMG' && element.hasAttribute('alt')) {
+                        element.alt = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            }
+        });
+        
+        // Update form labels and buttons
+        this.updateFormLabels();
+    }
+    
+    // Handle language change
+    onLanguageChanged() {
+        console.log('Language changed to:', this.i18n.getLanguage());
+        
+        // Re-apply translations
+        this.applyTranslations();
+        
+        // Refresh the forecast if we have one
+        if (this.currentForecast) {
+            this.displayForecastResults(this.currentForecast);
+        }
+        
+        // Add transition class for smooth language switch
+        document.body.classList.add('language-transition');
+        setTimeout(() => {
+            document.body.classList.remove('language-transition');
+        }, 300);
+    }
+    
+    // Update form labels and placeholders
+    updateFormLabels() {
+        // Update form labels
+        const updateLabel = (selector, key) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                const label = element.previousElementSibling;
+                if (label && label.tagName === 'LABEL') {
+                    label.textContent = this.i18n.t(key);
+                }
+            }
+        };
+        
+        // Update form placeholders
+        const updatePlaceholder = (selector, key) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.placeholder = this.i18n.t(key);
+            }
+        };
+        
+        // Update form buttons
+        const updateButton = (selector, key) => {
+            const button = document.querySelector(selector);
+            if (button) {
+                button.textContent = this.i18n.t(key);
+            }
+        };
+        
+        // Update forecast form
+        updateLabel('#crop-select', 'forecast.form.crop');
+        updateLabel('#district-select', 'forecast.form.district');
+        updateLabel('#season-select', 'forecast.form.season');
+        updateLabel('#quantity-input', 'forecast.form.quantity');
+        updateButton('#forecast-form button[type="submit"]', 'forecast.form.submit');
+        
+        // Update simulator form
+        updateLabel('#simulator-quantity', 'simulator.form.quantity');
+        updateLabel('#market-select', 'simulator.form.market');
+        updateButton('#simulator-form button[type="submit"]', 'simulator.form.submit');
+        updateButton('#reset-simulator', 'simulator.form.reset');
     }
 
     setupEventListeners() {

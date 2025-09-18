@@ -1,0 +1,71 @@
+{
+  "app": {
+    "title": "ಕ್ರಾಪ್ ಸೆನ್ಸ್",
+    "tagline": "ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆಯಿಂದ ಚಾಲಿತ ಬೆಳೆ ಸಲಹಾ ವೇದಿಕೆ",
+    "getForecast": "ಪೂರ್ವಾನುಮಾನ ಪಡೆಯಿರಿ",
+    "loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+    "error": "ದೋಷ"
+  },
+  "forecastForm": {
+    "cropLabel": "ಬೆಳೆ ಆಯ್ಕೆಮಾಡಿ",
+    "districtLabel": "ಜಿಲ್ಲೆ ಆಯ್ಕೆಮಾಡಿ",
+    "quantityLabel": "ಪರಿಮಾಣ (ಕೆಜಿ)",
+    "seasonLabel": "ಋತು ಆಯ್ಕೆಮಾಡಿ",
+    "submitButton": "ಪೂರ್ವಾನುಮಾನ ಪಡೆಯಿರಿ",
+    "crops": {
+      "rice": "ಅಕ್ಕಿ",
+      "wheat": "ಗೋಧಿ",
+      "sugarcane": "ಕಬ್ಬು",
+      "cotton": "ಹತ್ತಿ",
+      "maize": "ಜೋಳ"
+    },
+    "seasons": {
+      "kharif": "ಖರೀಫ್",
+      "rabi": "ರಬಿ",
+      "zaid": "ಜೈದ್"
+    }
+  },
+  "forecastResults": {
+    "title": "ಪೂರ್ವಾನುಮಾನ ಫಲಿತಾಂಶಗಳು",
+    "crop": "ಬೆಳೆ",
+    "district": "ಜಿಲ್ಲೆ",
+    "season": "ಋತು",
+    "quantity": "ಪರಿಮಾಣ",
+    "generatedOn": "ರಚಿಸಿದ ದಿನಾಂಕ",
+    "glutRisk": "ಹೆಚ್ಚಳದ ಅಪಾಯ",
+    "riskLevels": {
+      "low": "ಕಡಿಮೆ",
+      "medium": "ಮಧ್ಯಮ",
+      "high": "ಹೆಚ್ಚು"
+    },
+    "recommendedQuantity": "ಶಿಫಾರಸು ಮಾಡಲಾದ ಪರಿಮಾಣ",
+    "optimalTiming": "ಸೂಕ್ತ ಸಮಯ",
+    "suggestedMarkets": "ಸೂಚಿಸಲಾದ ಮಾರುಕಟ್ಟೆಗಳು"
+  },
+  "marketHeatmap": {
+    "title": "ಮಾರುಕಟ್ಟೆ ಶಾಖ ನಕ್ಷೆ",
+    "demandLevels": {
+      "high": "ಹೆಚ್ಚು",
+      "medium": "ಮಧ್ಯಮ",
+      "low": "ಕಡಿಮೆ"
+    }
+  },
+  "trendChart": {
+    "title": "ಬೇಡಿಕೆ ಮತ್ತು ಬೆಲೆ ಪ್ರವೃತ್ತಿ",
+    "demand": "ಬೇಡಿಕೆ (ಕೆಜಿ)",
+    "price": "ಬೆಲೆ (₹/ಕೆಜಿ)",
+    "days7": "7 ದಿನಗಳು",
+    "days14": "14 ದಿನಗಳು",
+    "days30": "30 ದಿನಗಳು"
+  },
+  "scenarioSimulator": {
+    "title": "ಪರಿಸ್ಥಿತಿ ಸಿಮ್ಯುಲೇಟರ್",
+    "simulateButton": "ಸಿಮ್ಯುಲೇಷನ್ ಚಲಾಯಿಸಿ",
+    "resultsTitle": "ಸಿಮ್ಯುಲೇಷನ್ ಫಲಿತಾಂಶಗಳು",
+    "demandImpact": "ಬೇಡಿಕೆಯ ಪರಿಣಾಮ",
+    "revenue": "ಆದಾಯ",
+    "profit": "ಲಾಭ",
+    "riskAssessment": "ಅಪಾಯ ಮೌಲ್ಯಮಾಪನ",
+    "recommendations": "ಶಿಫಾರಸುಗಳು"
+  }
+}

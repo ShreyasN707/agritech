@@ -1,0 +1,71 @@
+{
+  "app": {
+    "title": "क्रॉपसेन्स",
+    "tagline": "कृत्रिम बुद्धिमत्ता आधारित पीक सल्लागार प्लॅटफॉर्म",
+    "getForecast": "अंदाज मिळवा",
+    "loading": "लोड होत आहे...",
+    "error": "त्रुटी"
+  },
+  "forecastForm": {
+    "cropLabel": "पीक निवडा",
+    "districtLabel": "जिल्हा निवडा",
+    "quantityLabel": "प्रमाण (किलो)",
+    "seasonLabel": "हंगाम निवडा",
+    "submitButton": "अंदाज मिळवा",
+    "crops": {
+      "rice": "तांदूळ",
+      "wheat": "गहू",
+      "sugarcane": "ऊस",
+      "cotton": "कापूस",
+      "maize": "मका"
+    },
+    "seasons": {
+      "kharif": "खरीप",
+      "rabi": "रब्बी",
+      "zaid": "जायद"
+    }
+  },
+  "forecastResults": {
+    "title": "अंदाज परिणाम",
+    "crop": "पीक",
+    "district": "जिल्हा",
+    "season": "हंगाम",
+    "quantity": "प्रमाण",
+    "generatedOn": "तारीख",
+    "glutRisk": "जास्त उत्पादन धोका",
+    "riskLevels": {
+      "low": "कमी",
+      "medium": "मध्यम",
+      "high": "जास्त"
+    },
+    "recommendedQuantity": "शिफारस केलेले प्रमाण",
+    "optimalTiming": "योग्य वेळ",
+    "suggestedMarkets": "शिफारस केलेले बाजार"
+  },
+  "marketHeatmap": {
+    "title": "बाजार हीटमॅप",
+    "demandLevels": {
+      "high": "जास्त",
+      "medium": "मध्यम",
+      "low": "कमी"
+    }
+  },
+  "trendChart": {
+    "title": "मागणी आणि किंमत ट्रेंड",
+    "demand": "मागणी (किलो)",
+    "price": "किंमत (₹/किलो)",
+    "days7": "७ दिवस",
+    "days14": "१४ दिवस",
+    "days30": "३० दिवस"
+  },
+  "scenarioSimulator": {
+    "title": "परिस्थिती सिम्युलेटर",
+    "simulateButton": "सिम्युलेशन चालवा",
+    "resultsTitle": "सिम्युलेशन परिणाम",
+    "demandImpact": "मागणीवर परिणाम",
+    "revenue": "उत्पन्न",
+    "profit": "नफा",
+    "riskAssessment": "धोका मूल्यांकन",
+    "recommendations": "शिफारसी"
+  }
+}

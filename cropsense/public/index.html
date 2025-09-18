@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CropSense - AI-Driven Crop Advisory Platform</title>
+    <title data-i18n="app.title">CropSense - AI-Driven Crop Advisory Platform</title>
     <meta name="description" content="AI-driven crop advisory platform predicting local market demand to prevent crop gluts and maximize farmer income">
     
     <!-- Favicon -->
@@ -12,6 +12,7 @@
     <!-- External Libraries -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="css/i18n.css">
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
@@ -35,9 +36,9 @@
         <div class="container">
             <div class="logo">
                 <span class="logo-icon">🌾</span>
-                <h1>CropSense</h1>
+                <h1 data-i18n="app.title">CropSense</h1>
             </div>
-            <p class="tagline">AI-Driven Crop Advisory Platform</p>
+            <p class="tagline" data-i18n="app.tagline">AI-Driven Crop Advisory Platform</p>
             <nav class="nav">
                 <a href="index.html" class="nav-link active">Dashboard</a>
                 <a href="analytics.html" class="nav-link">Analytics</a>
@@ -51,7 +52,7 @@
             <!-- Dashboard Section -->
             <section class="dashboard-section">
                 <div class="card">
-                    <h2>Get Crop Forecast</h2>
+                    <h2 data-i18n="forecast.title">Get Crop Forecast</h2>
                     <form id="forecast-form" class="forecast-form">
                         <div class="form-row">
                             <div class="form-group">
@@ -318,7 +319,7 @@
             <section id="simulator-section" class="simulator-section hidden">
                 <div class="card">
                     <h2>🔬 Scenario Simulator</h2>
-                    <p class="section-description">Test different scenarios to optimize your farming strategy</p>
+                    <p class="section-description" data-i18n="forecast.subtitle">Enter crop details to get AI-powered forecast and recommendations</p>
                     
                     <form id="simulator-form" class="simulator-form">
                         <div class="form-row">
@@ -372,6 +373,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="app.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
