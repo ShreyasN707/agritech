@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - CropSense</title>
+    <meta name="description" content="Advanced analytics and insights for CropSense platform">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/analytics.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">📊</span>
+                <h1>CropSense Analytics</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Dashboard</a>
+                <a href="analytics.html" class="nav-link active">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Overview Cards -->
+            <section class="overview-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3 id="total-forecasts">-</h3>
+                            <p>Total Forecasts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3 id="active-users">-</h3>
+                            <p>Active Users</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-content">
+                            <h3 id="prediction-accuracy">-</h3>
+                            <p>Prediction Accuracy</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🛡️</div>
+                        <div class="stat-content">
+                            <h3 id="glut-prevention">-</h3>
+                            <p>Glut Prevention Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="charts-grid">
+                    <!-- Regional Performance -->
+                    <div class="card chart-card">
+                        <h3>🗺️ Regional Performance</h3>
+                        <div class="chart-container">
+                            <canvas id="regional-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Crop Popularity -->
+                    <div class="card chart-card">
+                        <h3>🌾 Crop Popularity Trends</h3>
+                        <div class="chart-container">
+                            <canvas id="crop-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Market Trends -->
+                    <div class="card chart-card full-width">
+                        <h3>📊 Market Trends Over Time</h3>
+                        <div class="chart-controls">
+                            <button class="chart-period-btn active" data-period="7d">7 Days</button>
+                            <button class="chart-period-btn" data-period="14d">14 Days</button>
+                            <button class="chart-period-btn" data-period="30d">30 Days</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="trends-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Insights Section -->
+            <section class="insights-section">
+                <div class="insights-grid">
+                    <!-- Market Alerts -->
+                    <div class="card">
+                        <h3>🚨 Market Alerts</h3>
+                        <div id="market-alerts" class="alerts-container">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                    
+                    <!-- Top Performing Regions -->
+                    <div class="card">
+                        <h3>🏆 Top Performing Regions</h3>
+                        <div id="top-regions" class="ranking-list">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="card">
+                        <h3>⚡ Recent Activity</h3>
+                        <div id="recent-activity" class="activity-feed">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Export Section -->
+            <section class="export-section">
+                <div class="card">
+                    <h3>📄 Export Analytics</h3>
+                    <div class="export-controls">
+                        <div class="form-group">
+                            <label for="export-period">Time Period</label>
+                            <select id="export-period">
+                                <option value="7d">Last 7 Days</option>
+                                <option value="14d">Last 14 Days</option>
+                                <option value="30d" selected>Last 30 Days</option>
+                            </select>
+                        </div>
+                        
+                        <div class="export-buttons">
+                            <button id="export-analytics-json" class="btn btn-secondary">
+                                <span class="btn-icon">📋</span>
+                                Export JSON
+                            </button>
+                            <button id="export-analytics-csv" class="btn btn-secondary">
+                                <span class="btn-icon">📊</span>
+                                Export CSV
+                            </button>
+                            <button id="export-analytics-pdf" class="btn btn-primary">
+                                <span class="btn-icon">📄</span>
+                                Export Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CropSense Analytics. Empowering farmers with data-driven insights.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="assets/icons.js"></script>
+    <script>
+        // Check if icons.js loaded properly, provide fallback
+        if (typeof getCropIcon === 'undefined') {
+            function getCropIcon(crop) { return '🌾'; }
+            function getWeatherIcon(condition) { return '☀️'; }
+            function getMarketIcon(status) { return '🟡'; }
+            function getActionIcon(action) { return '✅'; }
+        }
+    </script>
+    <script src="analytics.js"></script>
+</body>
+</html>

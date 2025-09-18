@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropSense - AI-Driven Crop Advisory Platform</title>
+    <meta name="description" content="AI-driven crop advisory platform predicting local market demand to prevent crop gluts and maximize farmer income">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" as="script">
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+        <p>Analyzing crop data...</p>
+    </div>
+
+    <!-- Offline Indicator -->
+    <div id="offline-indicator" class="offline-indicator hidden">
+        <span class="offline-icon">📡</span>
+        <span>You are offline. Showing cached forecast.</span>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🌾</span>
+                <h1>CropSense</h1>
+            </div>
+            <p class="tagline">AI-Driven Crop Advisory Platform</p>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Dashboard</a>
+                <a href="analytics.html" class="nav-link">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section class="dashboard-section">
+                <div class="card">
+                    <h2>Get Crop Forecast</h2>
+                    <form id="forecast-form" class="forecast-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="crop-select">Select Crop</label>
+                                <select id="crop-select" name="crop" required>
+                                    <option value="">Choose crop...</option>
+                                    <option value="Rice">Rice</option>
+                                    <option value="Wheat">Wheat</option>
+                                    <option value="Maize">Maize</option>
+                                    <option value="Sugarcane">Sugarcane</option>
+                                    <option value="Cotton">Cotton</option>
+                                    <option value="Soybean">Soybean</option>
+                                    <option value="Groundnut">Groundnut</option>
+                                    <option value="Pulses">Pulses</option>
+                                    <option value="Tomato">Tomato</option>
+                                    <option value="Onion">Onion</option>
+                                    <option value="Potato">Potato</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="district-select">Select State/District</label>
+                                <select id="district-select" name="district" required>
+                                    <option value="">Choose state or district...</option>
+                                    
+                                    <!-- States -->
+                                    <optgroup label="🏛️ States">
+                                        <option value="Karnataka">Karnataka</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                        <option value="West Bengal">West Bengal</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="Odisha">Odisha</option>
+                                    </optgroup>
+                                    
+                                    <!-- Karnataka Districts -->
+                                    <optgroup label="🏘️ Karnataka Districts">
+                                        <option value="Bangalore Rural">Bangalore Rural</option>
+                                        <option value="Bangalore Urban">Bangalore Urban</option>
+                                        <option value="Mysore">Mysore</option>
+                                        <option value="Mandya">Mandya</option>
+                                        <option value="Hassan">Hassan</option>
+                                        <option value="Tumkur">Tumkur</option>
+                                        <option value="Kolar">Kolar</option>
+                                        <option value="Chikkaballapur">Chikkaballapur</option>
+                                        <option value="Ramanagara">Ramanagara</option>
+                                        <option value="Hubli-Dharwad">Hubli-Dharwad</option>
+                                        <option value="Belgaum">Belgaum</option>
+                                        <option value="Bagalkot">Bagalkot</option>
+                                        <option value="Bijapur">Bijapur</option>
+                                        <option value="Gulbarga">Gulbarga</option>
+                                        <option value="Raichur">Raichur</option>
+                                        <option value="Bellary">Bellary</option>
+                                        <option value="Chitradurga">Chitradurga</option>
+                                        <option value="Davanagere">Davanagere</option>
+                                        <option value="Shimoga">Shimoga</option>
+                                        <option value="Udupi">Udupi</option>
+                                        <option value="Dakshina Kannada">Dakshina Kannada</option>
+                                        <option value="Uttara Kannada">Uttara Kannada</option>
+                                        <option value="Kodagu">Kodagu</option>
+                                        <option value="Chikmagalur">Chikmagalur</option>
+                                    </optgroup>
+                                    
+                                    <!-- Maharashtra Districts -->
+                                    <optgroup label="🏘️ Maharashtra Districts">
+                                        <option value="Mumbai">Mumbai</option>
+                                        <option value="Pune">Pune</option>
+                                        <option value="Nashik">Nashik</option>
+                                        <option value="Nagpur">Nagpur</option>
+                                        <option value="Aurangabad">Aurangabad</option>
+                                        <option value="Solapur">Solapur</option>
+                                        <option value="Kolhapur">Kolhapur</option>
+                                        <option value="Sangli">Sangli</option>
+                                        <option value="Satara">Satara</option>
+                                        <option value="Ahmednagar">Ahmednagar</option>
+                                        <option value="Latur">Latur</option>
+                                        <option value="Osmanabad">Osmanabad</option>
+                                        <option value="Beed">Beed</option>
+                                        <option value="Jalna">Jalna</option>
+                                        <option value="Parbhani">Parbhani</option>
+                                        <option value="Hingoli">Hingoli</option>
+                                        <option value="Nanded">Nanded</option>
+                                        <option value="Yavatmal">Yavatmal</option>
+                                        <option value="Akola">Akola</option>
+                                        <option value="Washim">Washim</option>
+                                        <option value="Amravati">Amravati</option>
+                                        <option value="Buldhana">Buldhana</option>
+                                        <option value="Wardha">Wardha</option>
+                                        <option value="Chandrapur">Chandrapur</option>
+                                        <option value="Gadchiroli">Gadchiroli</option>
+                                        <option value="Gondia">Gondia</option>
+                                        <option value="Bhandara">Bhandara</option>
+                                    </optgroup>
+                                    
+                                    <!-- Tamil Nadu Districts -->
+                                    <optgroup label="🏘️ Tamil Nadu Districts">
+                                        <option value="Chennai">Chennai</option>
+                                        <option value="Coimbatore">Coimbatore</option>
+                                        <option value="Madurai">Madurai</option>
+                                        <option value="Tiruchirappalli">Tiruchirappalli</option>
+                                        <option value="Salem">Salem</option>
+                                        <option value="Tirunelveli">Tirunelveli</option>
+                                        <option value="Erode">Erode</option>
+                                        <option value="Vellore">Vellore</option>
+                                        <option value="Thoothukudi">Thoothukudi</option>
+                                        <option value="Dindigul">Dindigul</option>
+                                        <option value="Thanjavur">Thanjavur</option>
+                                        <option value="Tiruvarur">Tiruvarur</option>
+                                        <option value="Nagapattinam">Nagapattinam</option>
+                                        <option value="Kanchipuram">Kanchipuram</option>
+                                        <option value="Tiruvallur">Tiruvallur</option>
+                                        <option value="Cuddalore">Cuddalore</option>
+                                        <option value="Villupuram">Villupuram</option>
+                                        <option value="Dharmapuri">Dharmapuri</option>
+                                        <option value="Krishnagiri">Krishnagiri</option>
+                                        <option value="Namakkal">Namakkal</option>
+                                        <option value="Karur">Karur</option>
+                                        <option value="Pudukkottai">Pudukkottai</option>
+                                        <option value="Sivaganga">Sivaganga</option>
+                                        <option value="Ramanathapuram">Ramanathapuram</option>
+                                        <option value="Virudhunagar">Virudhunagar</option>
+                                        <option value="Kanyakumari">Kanyakumari</option>
+                                        <option value="The Nilgiris">The Nilgiris</option>
+                                        <option value="Perambalur">Perambalur</option>
+                                        <option value="Ariyalur">Ariyalur</option>
+                                        <option value="Tirupur">Tirupur</option>
+                                    </optgroup>
+                                    
+                                    <!-- Punjab Districts -->
+                                    <optgroup label="🏘️ Punjab Districts">
+                                        <option value="Ludhiana">Ludhiana</option>
+                                        <option value="Amritsar">Amritsar</option>
+                                        <option value="Jalandhar">Jalandhar</option>
+                                        <option value="Patiala">Patiala</option>
+                                        <option value="Bathinda">Bathinda</option>
+                                        <option value="Mohali">Mohali</option>
+                                        <option value="Hoshiarpur">Hoshiarpur</option>
+                                        <option value="Gurdaspur">Gurdaspur</option>
+                                        <option value="Firozpur">Firozpur</option>
+                                        <option value="Faridkot">Faridkot</option>
+                                        <option value="Muktsar">Muktsar</option>
+                                        <option value="Moga">Moga</option>
+                                        <option value="Barnala">Barnala</option>
+                                        <option value="Sangrur">Sangrur</option>
+                                        <option value="Mansa">Mansa</option>
+                                        <option value="Nawanshahr">Nawanshahr</option>
+                                        <option value="Kapurthala">Kapurthala</option>
+                                        <option value="Tarn Taran">Tarn Taran</option>
+                                        <option value="Rupnagar">Rupnagar</option>
+                                        <option value="Fatehgarh Sahib">Fatehgarh Sahib</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="season-select">Select Season</label>
+                                <select id="season-select" name="season" required>
+                                    <option value="">Choose season...</option>
+                                    <option value="Kharif">Kharif (Jun-Oct)</option>
+                                    <option value="Rabi">Rabi (Nov-Apr)</option>
+                                    <option value="Zaid">Zaid (Apr-Jun)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="quantity-input">Planned Quantity (kg)</label>
+                                <input type="number" id="quantity-input" name="quantity" min="1" max="10000" value="100" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-icon">📊</span>
+                            Get Forecast
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Last Forecast Cache -->
+                <div id="last-forecast-card" class="card hidden">
+                    <h3>📋 Last Forecast</h3>
+                    <div id="last-forecast-content"></div>
+                    <button id="load-last-forecast" class="btn btn-secondary">Load Last Forecast</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="results-section hidden">
+                <!-- Forecast Summary -->
+                <div class="card">
+                    <h2>📈 Forecast Summary</h2>
+                    <div id="forecast-summary" class="forecast-summary">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Charts and Heatmap -->
+                <div class="charts-container">
+                    <div class="card chart-card">
+                        <h3>📊 Demand & Price Trends</h3>
+                        <div class="chart-controls">
+                            <button class="chart-period-btn active" data-period="7day">7 Days</button>
+                            <button class="chart-period-btn" data-period="14day">14 Days</button>
+                            <button class="chart-period-btn" data-period="30day">30 Days</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="trend-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card map-card">
+                        <h3>🗺️ Market Heatmap</h3>
+                        <div id="market-map"></div>
+                        <div class="map-legend">
+                            <div class="legend-item">
+                                <span class="legend-color low"></span>
+                                <span>Low Demand</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color medium"></span>
+                                <span>Medium Demand</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color high"></span>
+                                <span>High Demand</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="card">
+                    <h3>💡 AI Recommendations</h3>
+                    <div id="recommendations-content" class="recommendations-content">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Export Options -->
+                <div class="card">
+                    <h3>📄 Export Forecast</h3>
+                    <div class="export-buttons">
+                        <button id="export-json" class="btn btn-secondary">
+                            <span class="btn-icon">📋</span>
+                            Export JSON
+                        </button>
+                        <button id="export-pdf" class="btn btn-secondary">
+                            <span class="btn-icon">📄</span>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scenario Simulator -->
+            <section id="simulator-section" class="simulator-section hidden">
+                <div class="card">
+                    <h2>🔬 Scenario Simulator</h2>
+                    <p class="section-description">Test different scenarios to optimize your farming strategy</p>
+                    
+                    <form id="simulator-form" class="simulator-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="sim-crop">Crop Type</label>
+                                <select id="sim-crop" name="crop">
+                                    <!-- Options will be populated from main form -->
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sim-quantity">Quantity (kg)</label>
+                                <input type="number" id="sim-quantity" name="quantity" min="1" max="10000" value="100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="sim-market">Target Market</label>
+                                <select id="sim-market" name="market">
+                                    <option value="">Auto-select best market</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-icon">🔬</span>
+                            Simulate Impact
+                        </button>
+                    </form>
+                    
+                    <div id="simulation-results" class="simulation-results hidden">
+                        <!-- Dynamic simulation results will be inserted here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CropSense. Empowering farmers with AI-driven insights.</p>
+            <div class="footer-links">
+                <a href="#" onclick="showAbout()">About</a>
+                <a href="#" onclick="showPrivacy()">Privacy</a>
+                <a href="#" onclick="showContact()">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
